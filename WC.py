@@ -26,12 +26,12 @@ if __name__ == '__main__':
     dt = webget('非st跌停')
     zb = webget('非st炸板')
     fb = webget('反包 昨日下跌大于3%')
-    llb = webget('非st两连板')
-    slb = webget('非st三连板')
-    lb4 = webget('非st四连板')
-    lb5 = webget('非st五连板')
-    lb6 = webget('非st六连板')
-    lb7 = webget('非st七连板以上')
+    llb = webget('非st，非新股，两连板')
+    slb = webget('非st，非新股，三连板')
+    lb4 = webget('非st，非新股，四连板')
+    lb5 = webget('非st，非新股，五连板')
+    lb6 = webget('非st，非新股，六连板')
+    lb7 = webget('非st，非新股，七连板以上')
     ret_list = ['上涨:{sz} 下跌:{xd} \n'.format(sz=sz, xd=xd),
                 '上涨大于5%:{sz5} 下跌大于5%:{xd5} \n'.format(sz5=sz5, xd5=xd5),
                 '涨停:{zt} 跌停:{dt} \n'.format(zt=zt, dt=dt),

@@ -52,4 +52,4 @@ if __name__ == '__main__':
     print "[31关系] 涨停数量:{0} 下跌5%数量:{1} 得分{2}".format(ztsl, xd5, str_score)
     print "---------------"
     print "惯性势能{0}".format(ztsl_score + lxztsl_score + xd5_score + hp_score + str_score)
-     print "---------------"
+    print "---------------"
