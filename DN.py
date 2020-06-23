@@ -21,6 +21,8 @@ def score(cond):
     else:
         return -2
 
+zrday = "周一"
+qrday = "周五"
 
 if __name__ == '__main__':
     options = webdriver.ChromeOptions()
@@ -31,30 +33,30 @@ if __name__ == '__main__':
     browser = webdriver.Chrome(chrome_options=options)
     ret_list = []
     # 昨日涨停今日红盘比 大于 0.6 +2分
-    zrzt = int(webget("非st，非新股，昨日涨停"))
-    zrzt_hp = int(webget("非st，非新股，昨日涨停, 今日上涨"))
+    zrzt = int(webget("非st，非新股，{0}涨停".format(zrday)))
+    zrzt_hp = int(webget("非st，非新股，{0}涨停, 今日上涨".format(zrday)))
     score1 = score(zrzt * 0.6 < zrzt_hp)
     print "[昨日涨停上涨60%+] 昨日涨停:{0} 今天上涨:{1} 占比{2}% 得分:{3}".format(zrzt, zrzt_hp, zrzt_hp*100/zrzt, score1)
 
     # 昨日连续涨停今日红盘比 大于 0.6 +2分
-    zrlxzt = int(webget("非st，非新股，昨日连板"))
-    zrlxzt_hp = int(webget("非st，非新股，昨日连板, 今日上涨"))
+    zrlxzt = int(webget("非st，非新股，{0}连板".format(zrday)))
+    zrlxzt_hp = int(webget("非st，非新股，{0}连板, 今日上涨".format(zrday)))
     score2 = score(zrlxzt * 0.6 < zrlxzt_hp)
     print "[昨日连板上涨60%+] 昨日连板:{0} 今天上涨:{1} 占比{2}% 得分:{3}".format(zrlxzt, zrlxzt_hp, zrlxzt_hp*100/zrlxzt, score2)
 
     # 昨日断板绿盘比例 小于 0.4 +2分
-    lp = int(webget("非st，非新股，周五未能涨停，周四涨停"))
-    lp2 = int(webget("非st，非新股，周五未能涨停，周四涨停， 今天下跌"))
+    lp = int(webget("非st，非新股，{0}未能涨停，{1}涨停".format(zrday,qrday)))
+    lp2 = int(webget("非st，非新股，{0}未能涨停，{1}涨停， 今天下跌".format(zrday,qrday)))
     score5 = score(lp2 < lp * 0.4)
     print "[昨日断板下跌] 昨日断板:{0} 断板后今天下跌:{1} 占比{2}% 得分:{3}".format(lp, lp2, lp2*100/lp, score5)
 
     # 昨日涨停今日跌幅超4%比例 小于 0.4 +2分
-    zrzt_dm = int(webget("非st，非新股，昨日涨停, 今日跌幅大于4%"))
+    zrzt_dm = int(webget("非st，非新股，{0}涨停, 今日跌幅大于4%".format(zrday)))
     score3 = score(zrzt_dm < zrzt*0.4)
     print "[昨日涨停大面] 昨日涨停:{0} 今天大面:{1} 占比{2}% 得分:{3}".format(zrzt, zrzt_dm, zrzt_dm*100/zrzt, score3)
 
     # 昨日连板涨停今日跌幅超4%比例 小于 0.4 +2分
-    zrlxzt_dm = int(webget("非st，非新股，昨日连板, 今日跌幅大于4%"))
+    zrlxzt_dm = int(webget("非st，非新股，{0}连板, 今日跌幅大于4%".format(zrday)))
     score4 = score(zrlxzt_dm < zrlxzt * 0.4)
     print "[昨日连板大面] 昨日连续涨停:{0} 今天大面:{1} 占比{2}% 得分:{3}".format(zrlxzt, zrlxzt_dm, zrlxzt_dm*100/zrlxzt, score4)
 
@@ -68,8 +70,9 @@ if __name__ == '__main__':
     print "---------------"
 
     # 其他
-    zbdm = int(webget("非st，非新股，昨日炸板，今日下跌超过4%"))
-    zbsz = int(webget("非st，非新股，昨日炸板，今日上涨"))
+    zbdm = int(webget("非st，非新股，{0}炸板，今日下跌超过4%".format(zrday)))
+    zbsz = int(webget("非st，非新股，{0}炸板，今日上涨".format(zrday)))
+
     print "[昨日炸板大面比] 昨日炸板{0} 今日上涨{1} 占比{2}% 大面{3} 占比{4}%".format(zb,zbsz, zbsz*100/zb, zbdm, zbdm*100/zb)
 
     gn_list = ["头条概念","室外经济概念","免税概念","芯片概念","网络游戏概念","特斯拉概念"]
