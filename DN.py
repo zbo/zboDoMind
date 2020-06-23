@@ -72,6 +72,7 @@ if __name__ == '__main__':
     # 其他
     zbdm = int(webget("非st，非新股，{0}炸板，今日下跌超过4%".format(zrday)))
     zbsz = int(webget("非st，非新股，{0}炸板，今日上涨".format(zrday)))
+
     print "[昨日炸板大面比] 昨日炸板{0} 今日上涨{1} 占比{2}% 大面{3} 占比{4}%".format(zb,zbsz, zbsz*100/zb, zbdm, zbdm*100/zb)
 
     gn_list = ["头条概念","室外经济概念","免税概念","芯片概念","网络游戏概念","特斯拉概念"]
