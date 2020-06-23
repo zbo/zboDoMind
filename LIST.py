@@ -33,3 +33,4 @@ if __name__ == '__main__':
     file_object = open('list.log', 'w')
     file_object.writelines(content)
     file_object.close()
+    print content
