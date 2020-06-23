@@ -4,9 +4,6 @@
 from selenium import webdriver
 import sys
 
-reload(sys)
-sys.setdefaultencoding("utf-8")
-
 
 def webget(keyword):
     browser.get(url.format(keyword))
@@ -21,8 +18,8 @@ def score(cond):
     else:
         return -2
 
-zrday = "周一"
-qrday = "周五"
+zrday = "周二"
+qrday = "周一"
 
 if __name__ == '__main__':
     options = webdriver.ChromeOptions()
@@ -75,11 +72,21 @@ if __name__ == '__main__':
 
     print "[昨日炸板大面比] 昨日炸板{0} 今日上涨{1} 占比{2}% 大面{3} 占比{4}%".format(zb,zbsz, zbsz*100/zb, zbdm, zbdm*100/zb)
 
-    gn_list = ["头条概念","室外经济概念","免税概念","芯片概念","网络游戏概念","特斯拉概念"]
+    gn_list = ["头条概念","室外经济概念","免税概念","芯片概念","网络游戏概念","特斯拉概念","证券板块"]
     gndm_tmp = "非st，非新股，今日跌幅大于4%, {0}"
     gndz_tmp = "非st，非新股，今日涨幅大于4%, {0}"
+    best = 0
+    best_g = ""
     for g in gn_list:
         gn = int(webget(g))
         gndm = int(webget(gndm_tmp.format(g)))
         gndz = int(webget(gndz_tmp.format(g)))
-        print "[{0}]总量{1} 大涨{2} 占比{3}% 大面{4} 占比{5}%".format(g,gn,gndz,gndz*100/gn,gndm,gndm*100/gn)
+        dz_percentage = gndz*100/gn
+        dm_percentage = gndm*100/gn
+        if dz_percentage>best:
+            best = dz_percentage
+            best_g = g
+        print "[{0}]总量{1} 大涨{2} 占比{3}% 大面{4} 占比{5}%".format(g,gn,gndz,dz_percentage,gndm,dm_percentage)
+    print "---------------"
+    print "最强板块{0}".format(best_g)
+    print "---------------"
