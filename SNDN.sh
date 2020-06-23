@@ -1,4 +1,4 @@
-cd /Users/zhu/bob/zboDoMind/
+cd /home/seluser/zboDoMind
 /usr/bin/python SN.py
 /usr/bin/python DN.py
 /usr/bin/python WC.py
