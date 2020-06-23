@@ -31,15 +31,15 @@ if __name__ == '__main__':
     browser = webdriver.Chrome(chrome_options=options)
     ret_list = []
     # 涨停板数量 大于 50 +2分
-    ztsl = int(webget('非st涨停'))
+    ztsl = int(webget('非st，非新股，涨停'))
     ztsl_score = score(ztsl > 50)
     print "[涨停多] 涨停板数量大于50:{0} 得分{1}".format(ztsl, ztsl_score)
     # 连续涨停板数量 大于 10 +2分
-    lxztsl = int(webget('非st连续涨停'))
+    lxztsl = int(webget('非st，非新股，连续涨停'))
     lxztsl_score = score(lxztsl > 10)
     print "[连板多] 连续涨停板数量大于10:{0} 得分{1}".format(lxztsl, lxztsl_score)
     # 跌幅大于5%不包含跌停 小于 100 +2分
-    xd5 = int(webget('非st跌幅大于5%不包含跌停'))
+    xd5 = int(webget('非st，非新股，跌幅大于5%不包含跌停'))
     xd5_score = score(xd5 < 100)
     print "[大面少] 跌幅大于5%不包含跌停数量小于100:{0} 得分{1}".format(xd5, xd5_score)
     # 红盘个数比 大于一半 +2分
