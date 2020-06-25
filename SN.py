@@ -2,11 +2,7 @@
 # -*- coding:utf8 -*-
 
 from selenium import webdriver
-import sys
-
-reload(sys)
-sys.setdefaultencoding("utf-8")
-
+import readconf
 
 def webget(keyword):
     browser.get(url.format(keyword))
@@ -21,6 +17,10 @@ def score(cond):
     else:
         return -2
 
+dic = readconf.read()
+jrday = dic['jrday']
+zrday = dic['zrday']
+qrday = dic['qrday']
 
 if __name__ == '__main__':
     options = webdriver.ChromeOptions()
@@ -31,11 +31,11 @@ if __name__ == '__main__':
     browser = webdriver.Chrome(chrome_options=options)
     ret_list = []
     # 涨停板数量 大于 50 +2分
-    ztsl = int(webget('非st，非新股，涨停'))
+    ztsl = int(webget('非st，非新股，{0}涨停'.format(jrday)))
     ztsl_score = score(ztsl > 50)
     print "[涨停多] 涨停板数量大于50:{0} 得分{1}".format(ztsl, ztsl_score)
     # 连续涨停板数量 大于 10 +2分
-    lxztsl = int(webget('非st，非新股，连续涨停'))
+    lxztsl = int(webget('非st，非新股，{0}涨停，{1}涨停'.format(zrday,jrday)))
     lxztsl_score = score(lxztsl > 10)
     print "[连板多] 连续涨停板数量大于10:{0} 得分{1}".format(lxztsl, lxztsl_score)
     # 跌幅大于5%不包含跌停 小于 100 +2分
