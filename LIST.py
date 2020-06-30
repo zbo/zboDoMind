@@ -7,7 +7,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-watch_list = ['省广集团', '新力金融', '南国置业', '德力股份', '国药股份', '金科文化']
+watch_list = ['省广集团', '双林股份', '久其软件', '上证指数']
 
 
 def webget(keyword):

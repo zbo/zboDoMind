@@ -44,8 +44,8 @@ if __name__ == '__main__':
     print "[昨日涨停大面30%-] 昨日涨停:{0} 今天大面:{1} 占比{2}% 得分:{3}".format(zrzt, zrzt_dm, zrzt_dm*100/zrzt, score2)
 
     #3 昨日连续涨停今日红盘比 大于 0.6 +2分
-    zrlxzt = int(webget("非st,非新股, {0}涨停, {1}涨停".format(zrday,jrday)))
-    zrlxzt_hp = int(webget("非st,非新股, {0}涨停, {1}涨停, {2}上涨".format(qrday,zrday,jrday)))
+    zrlxzt = int(webget("非st,非新股, {0}涨停, {1}涨停".format(zrday,qrday)))
+    zrlxzt_hp = int(webget("非st,非新股, {0}涨停, {1}涨停, {2}上涨".format(zrday,qrday,jrday)))
     score3 = score(zrlxzt * 0.6 < zrlxzt_hp)
     print "[昨日连板上涨60%+] 昨日连板:{0} 今天上涨:{1} 占比{2}% 得分:{3}".format(zrlxzt, zrlxzt_hp, zrlxzt_hp*100/zrlxzt, score3)
 
@@ -60,8 +60,8 @@ if __name__ == '__main__':
     print "[今日连板昨日连板80%+] 今日连板{0} 昨日连板{1} 比例{2}% 得分{3}".format(jrlxzt,zrlxzt,jrlxzt*100/zrlxzt,score5)
 
     #6 昨日断板绿盘比例 小于 0.5 +2分
-    lp = int(webget("非st,非新股,{0}未能涨停,{1}涨停".format(zrday,qrday)))
-    lp2 = int(webget("非st,非新股,{0}未能涨停,{1}涨停, {2}下跌".format(zrday,qrday,jrday)))
+    lp = int(webget("非st,非新股,{0}未能涨停, {1}连板".format(zrday,qrday)))
+    lp2 = int(webget("非st,非新股,{0}未能涨停,{1}连板, {2}下跌".format(zrday,qrday,jrday)))
     score6 = score(lp2 < lp * 0.5)
     print "[昨日断板下跌50%-] 昨日断板:{0} 断板后今天下跌:{1} 占比{2}% 得分:{3}".format(lp, lp2, lp2*100/lp, score6)
 
