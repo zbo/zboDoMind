@@ -1,5 +1,6 @@
 .vscode/*.*
 .idea/*.*
+*.pyc
 list.log
 today.log
 conf

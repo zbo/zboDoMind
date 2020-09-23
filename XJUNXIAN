@@ -1,0 +1,3 @@
+c1:=ma(c,5)>ma(c,10) and ma(c,10)>ma(c,20);
+c2:=ma(c,5)>ref(ma(c,5),1) and ma(c,10)>ref(ma(c,10),1) and ma(c,20)>ref(ma(c,20),1);
+c1 and c2; 
